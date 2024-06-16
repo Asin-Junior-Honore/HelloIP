@@ -6,25 +6,39 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware to normalize IPv6 address if necessary
+function normalizeIpAddress(ip) {
+  if (ip.startsWith("::ffff:")) {
+    return ip.slice(7); // Remove ::ffff: prefix
+  }
+  if (ip === "::1") {
+    return "127.0.0.1"; // Normalize IPv6 loopback to IPv4 loopback
+  }
+  return ip;
+}
+
 app.get("/:name?", (req, res) => {
-  const name = req.params.name;
-  const clientIp =
-    req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+  const { name } = req.params;
+  const clientIp = normalizeIpAddress(
+    req.headers["x-forwarded-for"] || req.connection.remoteAddress
+  );
 
   if (!name) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "😕 Please enter a name",
       status: 400,
     });
-  } else {
-    res.status(200).json({
-      message: `👋 Hello, ${name}! 🌍`,
-      ipAddress: clientIp,
-      status: 200,
-    });
   }
+
+  return res.status(200).json({
+    message: `👋 Hello, ${name}! 🌍`,
+    ipAddress: clientIp,
+    status: 200,
+  });
 });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// Endpoint for testing: http://localhost:3000/honore

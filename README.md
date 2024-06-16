@@ -86,7 +86,8 @@ The project's folder structure is as follows:
 HelloIP/
 │
 ├── node_modules/    # Directory for npm packages
-├── .gitignore       # To ignore node_modules and other unnecessary files
+├── .gitignore       # To ignore node_modules, .env and other unnecessary files 
+├── .env             # Port Number
 ├── vercel.json      # Vercel configuration file
 ├── server.js        # Main server file
 ├── package.json     # Node.js project metadata and dependencies
@@ -97,6 +98,7 @@ HelloIP/
 
 - **node_modules/**: Contains all the npm packages installed for this project.
 - **.gitignore**: Specifies which files and directories to ignore in git commits.
+- **.env**: Contains your port number.
 - **vercel.json**: Configuration file for deploying on Vercel.
 - **server.js**: The main server file that handles incoming HTTP requests.
 - **package.json**: Contains project metadata, dependencies, and scripts.
