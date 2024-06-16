@@ -42,4 +42,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// Endpoint for testing: http://localhost:3000/honore
+// Endpoint for testing: http://localhost:3000/yourName
