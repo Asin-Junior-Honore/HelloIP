@@ -25,7 +25,8 @@ app.get("/:name?", (req, res) => {
 
   if (!name) {
     return res.status(400).json({
-      message: "😕 Please enter a name",
+      message:
+        "😕 Oops! It seems you forgot to enter a name. Please provide a name in the URL, like /YourName.",
       status: 400,
     });
   }
