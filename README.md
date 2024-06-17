@@ -59,7 +59,7 @@ You should see a JSON response similar to:
 
 ```json
 {
-  "message": "👋 Hello, John! 🌍",
+  "message": "👋 Hello, Mark! ",
   "ipAddress": "::1",
   "status": 200
 }
@@ -69,7 +69,7 @@ If you access `http://localhost:3000/` without providing a name, you will receiv
 
 ```json
 {
-  "message": "😕 Please enter a name",
+  "message": "😕 Oops! It seems you forgot to enter a name. Please provide a name in the URL, like /YourName.",
   "status": 400
 }
 ```
