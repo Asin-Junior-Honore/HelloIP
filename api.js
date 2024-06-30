@@ -6,14 +6,12 @@ dotenv.config();
 const IPIFY_API_KEY = process.env.IPIFY_API_KEY;
 const OPENWEATHERMAP_API_KEY = process.env.OPENWEATHERMAP_API_KEY;
 
-async function getLocation(clientIp) {
+async function getLocation() {
   try {
     const response = await axios.get(
-      `https://geo.ipify.org/api/v1?apiKey=${IPIFY_API_KEY}&ipAddress=${clientIp}`
+      `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY}`
     );
-
-    console.log(`IPify API Response: ${JSON.stringify(response.data)}`);
-
+    // console.log(response.data.location.region);
     return response.data;
   } catch (error) {
     console.error(`Error fetching location: ${error}`);
@@ -28,11 +26,6 @@ async function getWeather(cityName) {
         cityName
       )}&appid=${OPENWEATHERMAP_API_KEY}&units=metric`
     );
-
-    console.log(
-      `OpenWeatherMap API Response: ${JSON.stringify(response.data)}`
-    );
-
     return response.data;
   } catch (error) {
     console.error(`Error fetching weather: ${error}`);
