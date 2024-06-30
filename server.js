@@ -7,6 +7,17 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware to normalize IPv6 address if necessary
+function normalizeIpAddress(ip) {
+  if (ip.startsWith("::ffff:")) {
+    return ip.slice(7); // Remove ::ffff: prefix
+  }
+  if (ip === "::1") {
+    return "127.0.0.1"; // Normalize IPv6 loopback to IPv4 loopback
+  }
+  return ip;
+}
+
 app.get("/:name?", async (req, res) => {
   const { name } = req.params;
 
@@ -19,16 +30,20 @@ app.get("/:name?", async (req, res) => {
   }
 
   try {
-    const locationData = await getLocation();
+    const clientIp = normalizeIpAddress(
+      req.headers["x-forwarded-for"] || req.connection.remoteAddress
+    );
+
+    const locationData = await getLocation(clientIp);
 
     const cityName = locationData.location.region;
-    const clientIp = locationData.ip;
+    const clientIpFromApi = locationData.ip;
 
     const weatherData = await getWeather(cityName);
 
     return res.status(200).json({
       greeting: `👋 Hello, ${name}! 🌍`,
-      client_ip: clientIp,
+      client_ip: clientIpFromApi,
       location: cityName,
       temperature: weatherData.main.temp,
       message: `Hello, ${name}! The temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}.`,
