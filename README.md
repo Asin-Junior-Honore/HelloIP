@@ -1,9 +1,10 @@
 
+
 ---
 
 # HelloIP
 
-HelloIP is a simple Node.js application that returns a personalized greeting along with the client's IP address. It demonstrates the basic use of Express.js to handle HTTP requests and is deployed using Vercel.
+HelloIP is a simple Node.js application that returns a personalized greeting along with the client's IP address and weather information based on their location. It demonstrates the basic use of Express.js to handle HTTP requests and is deployed using Vercel.
 
 ## Table of Contents
 
@@ -44,7 +45,7 @@ Ensure you have the following installed on your local machine:
 Start the server by running:
 
 ```sh
-npm devStart
+npm run devStart
 ```
 
 By default, the server will run on port 3000. You can open your browser and navigate to `http://localhost:3000/YourName`, replacing `YourName` with any name you want.
@@ -59,8 +60,11 @@ You should see a JSON response similar to:
 
 ```json
 {
-  "message": "👋 Hello, Mark! ",
-  "ipAddress": "::1",
+  "greeting": "👋 Hello, Mark! 🌍",
+  "client_ip": "203.0.113.195",
+  "location": "Lagos State",
+  "temperature": 28,
+  "message": "Hello, Mark! The temperature is 28 degrees Celsius in Lagos State.",
   "status": 200
 }
 ```
@@ -86,9 +90,10 @@ The project's folder structure is as follows:
 HelloIP/
 │
 ├── node_modules/    # Directory for npm packages
-├── .gitignore       # To ignore node_modules, .env and other unnecessary files 
-├── .env             # Port Number
+├── .gitignore       # To ignore node_modules, .env and other unnecessary files
+├── .env             # Environment variables
 ├── vercel.json      # Vercel configuration file
+├── api.js           # Module for handling API calls
 ├── server.js        # Main server file
 ├── package.json     # Node.js project metadata and dependencies
 └── README.md        # Project description and usage instructions
@@ -98,8 +103,9 @@ HelloIP/
 
 - **node_modules/**: Contains all the npm packages installed for this project.
 - **.gitignore**: Specifies which files and directories to ignore in git commits.
-- **.env**: Contains your port number.
+- **.env**: Contains your API keys and other environment variables.
 - **vercel.json**: Configuration file for deploying on Vercel.
+- **api.js**: Handles external API calls to fetch location and weather data.
 - **server.js**: The main server file that handles incoming HTTP requests.
 - **package.json**: Contains project metadata, dependencies, and scripts.
 - **README.md**: Documentation for the project.
