@@ -11,7 +11,6 @@ async function getLocation() {
     const response = await axios.get(
       `https://geo.ipify.org/api/v2/country,city?apiKey=${IPIFY_API_KEY}`
     );
-    // console.log(response.data.location.region);
     return response.data;
   } catch (error) {
     console.error(`Error fetching location: ${error}`);

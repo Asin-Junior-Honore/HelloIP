@@ -20,7 +20,6 @@ app.get("/:name?", async (req, res) => {
 
   try {
     const locationData = await getLocation();
-
     const cityName = locationData.location.region;
     const clientIp = locationData.ip;
 
