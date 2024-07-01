@@ -1,5 +1,4 @@
 
-
 ---
 
 # HelloIP
@@ -60,12 +59,9 @@ You should see a JSON response similar to:
 
 ```json
 {
-  "greeting": "👋 Hello, Mark! 🌍",
   "client_ip": "203.0.113.195",
   "location": "Lagos State",
-  "temperature": 28,
-  "message": "Hello, Mark! The temperature is 28 degrees Celsius in Lagos State.",
-  "status": 200
+  "greeting": "Hello, Mark!, the temperature is 28 degrees Celsius in Lagos State"
 }
 ```
 
