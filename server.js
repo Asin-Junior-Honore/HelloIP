@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const { getLocation, getWeather } = require("./api");
+const { getWeather } = require("./api");
 
 dotenv.config();
 
@@ -35,17 +35,13 @@ app.get("/:name?", async (req, res) => {
   );
 
   try {
-    // Pass the IP address to getLocation to fetch the location data
-    const locationData = await getLocation(clientIp);
-    const cityName = locationData.location.region;
-
-    // Fetch weather data based on the city name obtained from the location data
-    const weatherData = await getWeather(cityName);
+    // Fetch weather data based on the IP address directly
+    const weatherData = await getWeather(clientIp);
 
     return res.status(200).json({
       client_ip: clientIp,
-      location: cityName,
-      greeting: `Hello, ${name}!, the temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}`,
+      location: weatherData.name,
+      greeting: `Hello, ${name}!, the temperature is ${weatherData.main.temp} degrees Celsius in ${weatherData.name}`,
     });
   } catch (error) {
     console.error(error);
