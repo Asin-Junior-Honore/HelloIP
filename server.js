@@ -43,12 +43,9 @@ app.get("/:name?", async (req, res) => {
     const weatherData = await getWeather(cityName);
 
     return res.status(200).json({
-      greeting: `👋 Hello, ${name}! 🌍`,
       client_ip: clientIp,
       location: cityName,
-      temperature: weatherData.main.temp,
-      message: `Hello, ${name}! The temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}.`,
-      status: 200,
+      greeting: `Hello, ${name}!, the temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}`,
     });
   } catch (error) {
     console.error(error);
