@@ -52,7 +52,7 @@ By default, the server will run on port 3000. You can open your browser and navi
 Example:
 
 ```sh
-http://localhost:3000/Mark
+https://asin-honore-hello-ip.vercel.app/api/hello?visitor_name=Mark
 ```
 
 You should see a JSON response similar to:
