@@ -47,7 +47,7 @@ Start the server by running:
 npm run devStart
 ```
 
-By default, the server will run on port 3000. You can open your browser and navigate to `http://localhost:3000/YourName`, replacing `YourName` with any name you want.
+By default, the server will run on port 3000. You can open your browser and navigate to `https://asin-honore-hello-ip.vercel.app/api/hello?visitor_name=YourName`, replacing `YourName` with any name you want.
 
 Example:
 
