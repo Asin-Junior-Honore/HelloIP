@@ -69,7 +69,7 @@ If you access `http://localhost:3000/` without providing a name, you will receiv
 
 ```json
 {
-  "message": "😕 Oops! It seems you forgot to enter a name. Please provide a name in the URL, like /YourName.",
+"😕 Oops! It seems you forgot to enter a name. Please provide a name in the query parameter, like /api/hello?visitor_name=YourName.",
   "status": 400
 }
 ```
