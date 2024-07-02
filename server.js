@@ -18,13 +18,13 @@ function normalizeIpAddress(ip) {
   return ip;
 }
 
-app.get("/:name?", async (req, res) => {
-  const { name } = req.params;
+app.get("/api/hello", async (req, res) => {
+  const { visitor_name: name } = req.query;
 
   if (!name) {
     return res.status(400).json({
       message:
-        "😕 Oops! It seems you forgot to enter a name. Please provide a name in the URL, like /YourName.",
+        "😕 Oops! It seems you forgot to enter a name. Please provide a name in the query parameter, like /api/hello?visitor_name=YourName.",
       status: 400,
     });
   }
@@ -45,7 +45,7 @@ app.get("/:name?", async (req, res) => {
     return res.status(200).json({
       client_ip: clientIp,
       location: cityName,
-      greeting: `Hello, ${name}!, the temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}`,
+      greeting: `Hello, ${name}! The temperature is ${weatherData.main.temp} degrees Celsius in ${cityName}.`,
     });
   } catch (error) {
     console.error(error);
